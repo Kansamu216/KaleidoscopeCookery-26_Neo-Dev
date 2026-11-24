@@ -141,7 +141,11 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
    }
 
    public void save(RecipeOutput recipeOutput, Identifier id) {
-      StockpotRecipe recipe = new StockpotRecipe(this.ingredients, this.soupBase, this.result, this.time, this.carrier, this.visuals);
+      StockpotRecipe recipe = new StockpotRecipe(this.ingredients, this.soupBase, toTemplate(this.result), this.time, this.carrier, this.visuals);
       recipeOutput.accept(id, recipe, null);
+   }
+
+   private static net.minecraft.world.item.ItemStackTemplate toTemplate(net.minecraft.world.item.ItemStack stack) {
+      return stack.isEmpty() ? null : net.minecraft.world.item.ItemStackTemplate.fromNonEmptyStack(stack);
    }
 }

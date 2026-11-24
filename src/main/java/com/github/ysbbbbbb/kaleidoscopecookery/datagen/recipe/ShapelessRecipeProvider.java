@@ -178,7 +178,7 @@ public class ShapelessRecipeProvider extends ModRecipeProvider {
 
    private void addRiceBowlRecipe(RecipeOutput consumer, ItemLike dish, Item result, String id) {
       Ingredient ingredient = Ingredient.of(new ItemLike[]{dish});
-      RiceBowlRecipe recipe = new RiceBowlRecipe(CraftingBookCategory.MISC, ingredient, result.getDefaultInstance());
+      RiceBowlRecipe recipe = new RiceBowlRecipe(CraftingBookCategory.MISC, ingredient, net.minecraft.world.item.ItemStackTemplate.fromNonEmptyStack(result.getDefaultInstance()));
       consumer.accept(this.modLoc(id), recipe, null);
    }
 

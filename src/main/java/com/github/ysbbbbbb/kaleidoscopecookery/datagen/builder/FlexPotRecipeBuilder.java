@@ -126,7 +126,11 @@ public class FlexPotRecipeBuilder implements RecipeBuilder {
    }
 
    public void save(RecipeOutput recipeOutput, Identifier id) {
-      FlexPotRecipe recipe = new FlexPotRecipe(this.time, this.stirFryCount, this.carrier, this.ingredients, this.result);
+      FlexPotRecipe recipe = new FlexPotRecipe(this.time, this.stirFryCount, this.carrier, this.ingredients, toTemplate(this.result));
       recipeOutput.accept(id, recipe, null);
+   }
+
+   private static net.minecraft.world.item.ItemStackTemplate toTemplate(net.minecraft.world.item.ItemStack stack) {
+      return stack.isEmpty() ? null : net.minecraft.world.item.ItemStackTemplate.fromNonEmptyStack(stack);
    }
 }

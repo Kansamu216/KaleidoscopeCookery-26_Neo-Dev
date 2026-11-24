@@ -102,6 +102,10 @@ public class TeapotBuilder implements RecipeBuilder {
    }
 
    public void save(RecipeOutput recipeOutput, Identifier id) {
-      recipeOutput.accept(id, new TeapotRecipe(this.teaFluid, this.ingredient, this.ingredientCount, this.time, this.result), null);
+      recipeOutput.accept(id, new TeapotRecipe(this.teaFluid, this.ingredient, this.ingredientCount, this.time, toTemplate(this.result)), null);
+   }
+
+   private static net.minecraft.world.item.ItemStackTemplate toTemplate(net.minecraft.world.item.ItemStack stack) {
+      return stack.isEmpty() ? null : net.minecraft.world.item.ItemStackTemplate.fromNonEmptyStack(stack);
    }
 }

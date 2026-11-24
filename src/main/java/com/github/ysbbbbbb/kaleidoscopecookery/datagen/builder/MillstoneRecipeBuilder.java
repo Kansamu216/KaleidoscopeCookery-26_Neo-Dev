@@ -72,7 +72,7 @@ public class MillstoneRecipeBuilder implements RecipeBuilder {
    }
 
    public void save(RecipeOutput recipeOutput, Identifier id) {
-      RandomOutput output = new RandomOutput(this.result, 1.0F);
+      RandomOutput output = new RandomOutput(net.minecraft.world.item.ItemStackTemplate.fromNonEmptyStack(this.result), 1.0F);
       MillstoneRecipe recipe = new MillstoneRecipe(this.ingredient, List.of(output));
       recipeOutput.accept(id, recipe, null);
    }

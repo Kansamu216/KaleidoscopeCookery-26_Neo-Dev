@@ -76,7 +76,11 @@ public class SteamerBuilder implements RecipeBuilder {
    }
 
    public void save(RecipeOutput recipeOutput, Identifier id) {
-      SteamerRecipe recipe = new SteamerRecipe(this.ingredient, this.result, this.cookTick);
+      SteamerRecipe recipe = new SteamerRecipe(this.ingredient, toTemplate(this.result), this.cookTick);
       recipeOutput.accept(id, recipe, null);
+   }
+
+   private static net.minecraft.world.item.ItemStackTemplate toTemplate(net.minecraft.world.item.ItemStack stack) {
+      return stack.isEmpty() ? null : net.minecraft.world.item.ItemStackTemplate.fromNonEmptyStack(stack);
    }
 }

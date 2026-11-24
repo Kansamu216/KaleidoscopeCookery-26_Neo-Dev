@@ -82,7 +82,11 @@ public class ChoppingBoardBuilder implements RecipeBuilder {
    }
 
    public void save(RecipeOutput recipeOutput, Identifier id) {
-      ChoppingBoardRecipe recipe = new ChoppingBoardRecipe(this.ingredient, this.result, this.cutCount, this.modelId);
+      ChoppingBoardRecipe recipe = new ChoppingBoardRecipe(this.ingredient, toTemplate(this.result), this.cutCount, this.modelId);
       recipeOutput.accept(id, recipe, null);
+   }
+
+   private static net.minecraft.world.item.ItemStackTemplate toTemplate(net.minecraft.world.item.ItemStack stack) {
+      return stack.isEmpty() ? null : net.minecraft.world.item.ItemStackTemplate.fromNonEmptyStack(stack);
    }
 }
