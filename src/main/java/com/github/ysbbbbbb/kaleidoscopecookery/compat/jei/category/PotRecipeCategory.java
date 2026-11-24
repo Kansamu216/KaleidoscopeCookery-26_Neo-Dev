@@ -79,7 +79,7 @@ public class PotRecipeCategory implements IRecipeCategory<RecipeHolder<PotRecipe
 
    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<PotRecipe> recipe, IFocusGroup focuses) {
       NonNullList<Ingredient> inputs = ((PotRecipe)recipe.value()).getIngredients();
-      ItemStack output = ((PotRecipe)recipe.value()).result();
+      ItemStack output = ((PotRecipe)recipe.value()).result().create();
 
       for (int i = 0; i < inputs.size(); i++) {
          int xOffset = i % 3 * 18 + 15;
