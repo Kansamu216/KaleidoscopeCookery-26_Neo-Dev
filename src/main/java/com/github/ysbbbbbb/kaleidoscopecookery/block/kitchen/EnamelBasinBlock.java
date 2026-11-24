@@ -1,6 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModRegistrationProperties;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.KitchenShovelItem;
 import java.util.List;
 import net.minecraft.ChatFormatting;
@@ -108,7 +109,7 @@ public class EnamelBasinBlock extends Block implements SimpleWaterloggedBlock {
                return InteractionResult.SUCCESS;
             }
          } else {
-            return mainHandItem.is((Item)ModItems.KITCHEN_SHOVEL.get())
+            return mainHandItem.is(TagMod.KITCHEN_SHOVELS)
                ? this.onShovelClick(state, level, pos, player, mainHandItem)
                : super.useItemOn(stack, state, level, pos, player, hand, hitResult);
          }

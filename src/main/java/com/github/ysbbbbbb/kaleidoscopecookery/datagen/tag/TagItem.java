@@ -45,6 +45,7 @@ public class TagItem extends ItemTagsProvider {
             }
          )
          .addOptionalTag(Identifier.parse("farmersdelight:tools/knives"));
+      this.tag(TagMod.KITCHEN_SHOVELS).add((Item)ModItems.KITCHEN_SHOVEL.get());
       this.tag(TagMod.KITCHEN_SHOVEL).add((Item)ModItems.KITCHEN_SHOVEL.get());
       this.tag(TagMod.CATERPILLARS).add((Item)ModItems.CATERPILLAR.get());
       this.tag(TagCommon.FD_KNIVES)

@@ -130,7 +130,7 @@ public class StoveBlock extends HorizontalDirectionalBlock {
          ((ModEventTrigger)ModTrigger.EVENT.get()).trigger(player, "lit_the_stove");
          return InteractionResult.SUCCESS;
       } else if ((Boolean)state.getValue(LIT) && itemInHand.is(TagMod.EXTINGUISH_STOVE)) {
-         if (itemInHand.is((Item)ModItems.KITCHEN_SHOVEL.get()) && KitchenShovelItem.hasOil(itemInHand)) {
+         if (itemInHand.is(TagMod.KITCHEN_SHOVELS) && KitchenShovelItem.hasOil(itemInHand)) {
             KitchenShovelItem.setHasOil(itemInHand, false);
          }
 

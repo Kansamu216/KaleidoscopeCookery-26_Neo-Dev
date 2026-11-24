@@ -18,6 +18,7 @@ public interface TagMod {
    TagKey<Item> STRAW_HAT = itemTag("straw_hat");
    TagKey<Item> STRAW_BALE = itemTag("straw_bale");
    TagKey<Item> KITCHEN_KNIFE = itemTag("kitchen_knife");
+   TagKey<Item> KITCHEN_SHOVELS = itemTag("kitchen_shovels");
    TagKey<Item> KITCHEN_SHOVEL = itemTag("kitchen_shovel");
    TagKey<Item> FARMER_ARMOR = itemTag("farmer_armor");
    TagKey<Item> INGREDIENT_BLOCKLIST = itemTag("ingredient_blocklist");
