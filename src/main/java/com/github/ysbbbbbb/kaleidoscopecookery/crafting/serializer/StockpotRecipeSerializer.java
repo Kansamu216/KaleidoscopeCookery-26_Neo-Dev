@@ -14,6 +14,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -32,7 +33,7 @@ public final class StockpotRecipeSerializer {
                .fieldOf("ingredients")
                .forGetter(StockpotRecipe::getIngredients),
             Identifier.CODEC.optionalFieldOf("soup_base", DEFAULT_SOUP_BASE).forGetter(StockpotRecipe::soupBase),
-            ItemStack.CODEC.fieldOf("result").forGetter(StockpotRecipe::result),
+            ItemStackTemplate.CODEC.fieldOf("result").forGetter(StockpotRecipe::result),
             Codec.INT.optionalFieldOf("time", 300).forGetter(StockpotRecipe::time),
             Ingredient.CODEC.optionalFieldOf("carrier", DEFAULT_CARRIER).forGetter(StockpotRecipe::carrier),
             StockpotVisuals.CODEC.forGetter(StockpotRecipe::visuals)
@@ -44,7 +45,7 @@ public final class StockpotRecipeSerializer {
       StockpotRecipe::getIngredients,
       Identifier.STREAM_CODEC,
       StockpotRecipe::soupBase,
-      ItemStack.STREAM_CODEC,
+      ItemStackTemplate.STREAM_CODEC,
       StockpotRecipe::result,
       ByteBufCodecs.INT,
       StockpotRecipe::time,
@@ -57,7 +58,7 @@ public final class StockpotRecipeSerializer {
 
    public static RecipeHolder<StockpotRecipe> getEmptyRecipe() {
       StockpotRecipe stockpotRecipe = new StockpotRecipe(
-         Lists.newArrayList(), DEFAULT_SOUP_BASE, ItemStack.EMPTY, 300, DEFAULT_CARRIER, StockpotVisuals.DEFAULT
+         Lists.newArrayList(), DEFAULT_SOUP_BASE, new ItemStackTemplate(Items.BOWL), 300, DEFAULT_CARRIER, StockpotVisuals.DEFAULT
       );
       return new RecipeHolder(ResourceKey.create(Registries.RECIPE, EMPTY_ID), stockpotRecipe);
    }

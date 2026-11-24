@@ -8,6 +8,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -15,13 +16,13 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.RecipeMatcher;
 
 public record StockpotRecipe(
-   NonNullList<Ingredient> ingredients, Identifier soupBase, ItemStack result, int time, Ingredient carrier, StockpotVisuals visuals
+   NonNullList<Ingredient> ingredients, Identifier soupBase, ItemStackTemplate result, int time, Ingredient carrier, StockpotVisuals visuals
 ) implements BaseRecipe<StockpotInput> {
-   public StockpotRecipe(List<Ingredient> ingredients, Identifier soupBase, ItemStack result, int time, Ingredient carrier, StockpotVisuals visuals) {
+   public StockpotRecipe(List<Ingredient> ingredients, Identifier soupBase, ItemStackTemplate result, int time, Ingredient carrier, StockpotVisuals visuals) {
       this(NonNullList.of(com.github.ysbbbbbb.kaleidoscopecookery.init.ModRecipes.EMPTY_INGREDIENT, BaseRecipe.fillInputs(ingredients)), soupBase, result, time, carrier, visuals);
    }
 
-   public StockpotRecipe(NonNullList<Ingredient> ingredients, ItemStack result, int time, ItemStack container) {
+   public StockpotRecipe(NonNullList<Ingredient> ingredients, ItemStackTemplate result, int time, ItemStack container) {
       this(ingredients, StockpotRecipeSerializer.DEFAULT_SOUP_BASE, result, time, Ingredient.of(container.getItem()), StockpotVisuals.DEFAULT);
    }
 
@@ -55,7 +56,7 @@ public record StockpotRecipe(
    }
 
    public ItemStack getResultItem(Provider registryAccess) {
-      return this.result;
+      return this.result.create();
    }
 
    public RecipeSerializer<StockpotRecipe> getSerializer() {

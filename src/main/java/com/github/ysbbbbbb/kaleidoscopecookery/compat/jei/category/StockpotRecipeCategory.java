@@ -70,7 +70,7 @@ public class StockpotRecipeCategory implements IRecipeCategory<RecipeHolder<Stoc
    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<StockpotRecipe> holder, IFocusGroup focuses) {
       StockpotRecipe recipe = (StockpotRecipe)holder.value();
       NonNullList<Ingredient> inputs = recipe.getIngredients();
-      ItemStack output = recipe.result();
+      ItemStack output = recipe.result().create();
 
       for (int i = 0; i < inputs.size(); i++) {
          int xOffset = i % 3 * 18 + 15;
