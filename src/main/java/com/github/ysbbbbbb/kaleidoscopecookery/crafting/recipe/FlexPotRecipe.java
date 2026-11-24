@@ -9,15 +9,16 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.RecipeMatcher;
 
-public record FlexPotRecipe(int time, int stirFryCount, Ingredient carrier, NonNullList<Ingredient> ingredients, ItemStack result)
+public record FlexPotRecipe(int time, int stirFryCount, Ingredient carrier, NonNullList<Ingredient> ingredients, ItemStackTemplate result)
    implements BaseRecipe<SimpleInput> {
-   public FlexPotRecipe(int time, int stirFryCount, Ingredient carrier, List<Ingredient> ingredients, ItemStack result) {
+   public FlexPotRecipe(int time, int stirFryCount, Ingredient carrier, List<Ingredient> ingredients, ItemStackTemplate result) {
       this(time, stirFryCount, carrier, NonNullList.of(com.github.ysbbbbbb.kaleidoscopecookery.init.ModRecipes.EMPTY_INGREDIENT, BaseRecipe.fillInputs(ingredients)), result);
    }
 
@@ -46,7 +47,7 @@ public record FlexPotRecipe(int time, int stirFryCount, Ingredient carrier, NonN
    }
 
    public ItemStack getResultItem(Provider registryAccess) {
-      return this.result;
+      return this.result.create();
    }
 
    public RecipeSerializer<FlexPotRecipe> getSerializer() {

@@ -6,6 +6,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -16,7 +17,7 @@ public final class RiceBowlRecipeSerializer {
       instance -> instance.group(
             CraftingBookCategory.CODEC.fieldOf("category").orElse(CraftingBookCategory.MISC).forGetter(CustomRecipe::category),
             Ingredient.CODEC.fieldOf("ingredient").forGetter(RiceBowlRecipe::getIngredient),
-            ItemStack.CODEC.fieldOf("result").forGetter(RiceBowlRecipe::getResult)
+            ItemStackTemplate.CODEC.fieldOf("result").forGetter(RiceBowlRecipe::resultTemplate)
          )
          .apply(instance, RiceBowlRecipe::new)
    );
@@ -25,8 +26,8 @@ public final class RiceBowlRecipeSerializer {
       CustomRecipe::category,
       Ingredient.CONTENTS_STREAM_CODEC,
       RiceBowlRecipe::getIngredient,
-      ItemStack.STREAM_CODEC,
-      RiceBowlRecipe::getResult,
+      ItemStackTemplate.STREAM_CODEC,
+      RiceBowlRecipe::resultTemplate,
       RiceBowlRecipe::new
    );
 

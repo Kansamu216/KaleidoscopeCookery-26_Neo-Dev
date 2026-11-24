@@ -8,6 +8,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
@@ -21,7 +22,7 @@ public final class FlexPotRecipeSerializer {
                .listOf()
                .fieldOf("ingredients")
                .forGetter(recipe -> recipe.ingredients().stream().toList()),
-            ItemStack.CODEC.fieldOf("result").forGetter(FlexPotRecipe::result)
+            ItemStackTemplate.CODEC.fieldOf("result").forGetter(FlexPotRecipe::result)
          )
          .apply(instance, FlexPotRecipe::new)
    );
@@ -34,7 +35,7 @@ public final class FlexPotRecipeSerializer {
       FlexPotRecipe::carrier,
       Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()),
       FlexPotRecipe::ingredients,
-      ItemStack.STREAM_CODEC,
+      ItemStackTemplate.STREAM_CODEC,
       FlexPotRecipe::result,
       FlexPotRecipe::new
    );

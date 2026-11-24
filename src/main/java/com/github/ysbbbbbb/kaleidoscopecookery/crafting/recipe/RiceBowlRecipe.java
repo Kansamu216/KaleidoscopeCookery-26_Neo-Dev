@@ -8,6 +8,7 @@ import java.util.List;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CustomRecipe;
@@ -18,9 +19,9 @@ import net.minecraft.world.level.Level;
 public class RiceBowlRecipe extends CustomRecipe {
    private final CraftingBookCategory category;
    private final Ingredient ingredient;
-   private final ItemStack result;
+   private final ItemStackTemplate result;
 
-   public RiceBowlRecipe(CraftingBookCategory category, Ingredient ingredient, ItemStack result) {
+   public RiceBowlRecipe(CraftingBookCategory category, Ingredient ingredient, ItemStackTemplate result) {
       this.category = category;
       this.ingredient = ingredient;
       this.result = result;
@@ -32,7 +33,7 @@ public class RiceBowlRecipe extends CustomRecipe {
    }
 
    public ItemStack assemble(CraftingInput container) {
-      ItemStack assembled = this.result.copy();
+      ItemStack assembled = this.result.create();
       copyBestQuality(container, assembled);
       return assembled;
    }
@@ -46,10 +47,14 @@ public class RiceBowlRecipe extends CustomRecipe {
    }
 
    public ItemStack getResultItem(Provider registries) {
-      return this.result.copy();
+      return this.result.create();
    }
 
    public ItemStack getResult() {
+      return this.result.create();
+   }
+
+   public ItemStackTemplate resultTemplate() {
       return this.result;
    }
 

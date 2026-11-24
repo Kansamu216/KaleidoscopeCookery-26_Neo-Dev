@@ -89,7 +89,7 @@ public class FlexPotRecipeCategory implements IRecipeCategory<RecipeHolder<FlexP
    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<FlexPotRecipe> holder, IFocusGroup focuses) {
       FlexPotRecipe recipe = (FlexPotRecipe)holder.value();
       NonNullList<Ingredient> inputs = recipe.getIngredients();
-      ItemStack output = recipe.result();
+      ItemStack output = recipe.result().create();
 
       for (int i = 0; i < inputs.size(); i++) {
          int xOffset = i % 3 * 18 + 15;

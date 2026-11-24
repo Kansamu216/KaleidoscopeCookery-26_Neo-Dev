@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModRecipes;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
@@ -11,11 +12,11 @@ import net.minecraft.world.level.Level;
 
 public class ChoppingBoardRecipe implements BaseRecipe<SingleRecipeInput> {
    private final Ingredient ingredient;
-   private final ItemStack result;
+   private final ItemStackTemplate result;
    private final int cutCount;
    private final Identifier modelId;
 
-   public ChoppingBoardRecipe(Ingredient ingredient, ItemStack result, int cutCount, Identifier modelId) {
+   public ChoppingBoardRecipe(Ingredient ingredient, ItemStackTemplate result, int cutCount, Identifier modelId) {
       this.ingredient = ingredient;
       this.result = result;
       this.cutCount = Math.max(cutCount, 1);
@@ -35,11 +36,15 @@ public class ChoppingBoardRecipe implements BaseRecipe<SingleRecipeInput> {
    }
 
    public ItemStack getResult() {
+      return this.result.create();
+   }
+
+   public ItemStackTemplate resultTemplate() {
       return this.result;
    }
 
    public ItemStack getResultItem(Provider registries) {
-      return this.result;
+      return this.result.create();
    }
 
    @SuppressWarnings("unchecked")

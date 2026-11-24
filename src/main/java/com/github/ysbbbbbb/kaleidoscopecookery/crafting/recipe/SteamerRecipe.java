@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModRecipes;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
@@ -10,10 +11,10 @@ import net.minecraft.world.level.Level;
 
 public class SteamerRecipe implements BaseRecipe<SingleRecipeInput> {
    private final Ingredient ingredient;
-   private final ItemStack result;
+   private final ItemStackTemplate result;
    private final int cookTick;
 
-   public SteamerRecipe(Ingredient ingredient, ItemStack result, int cookTick) {
+   public SteamerRecipe(Ingredient ingredient, ItemStackTemplate result, int cookTick) {
       this.ingredient = ingredient;
       this.result = result;
       this.cookTick = Math.max(cookTick, 1);
@@ -32,11 +33,15 @@ public class SteamerRecipe implements BaseRecipe<SingleRecipeInput> {
    }
 
    public ItemStack getResult() {
+      return this.result.create();
+   }
+
+   public ItemStackTemplate resultTemplate() {
       return this.result;
    }
 
    public ItemStack getResultItem(Provider registries) {
-      return this.result;
+      return this.result.create();
    }
 
    @SuppressWarnings("unchecked")

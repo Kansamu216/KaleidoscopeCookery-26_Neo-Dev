@@ -62,7 +62,7 @@ public class TeapotRecipeCategory implements IRecipeCategory<RecipeHolder<Teapot
    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<TeapotRecipe> holder, IFocusGroup focuses) {
       TeapotRecipe recipe = (TeapotRecipe)holder.value();
       List<ItemStack> inputs = recipe.ingredient().items().map(item -> new ItemStack(item, recipe.ingredientCount())).toList();
-      ItemStack output = recipe.result().copyWithCount(12);
+      ItemStack output = recipe.result().create().copyWithCount(12);
       Fluid fluid = (Fluid)BuiltInRegistries.FLUID.getValue(recipe.teaFluid());
       Item bucket = fluid.getBucket();
       builder.addSlot(RecipeIngredientRole.INPUT, 65, 3).setStandardSlotBackground().addItemLike(bucket);
