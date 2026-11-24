@@ -53,7 +53,7 @@ public class EmiTeapotRecipe extends BasicEmiRecipe {
                      Arrays.stream(value.ingredient().getItems()).map(stack -> EmiStack.of(stack.copyWithCount(value.ingredientCount()))).toList()
                   )
                );
-               List<EmiStack> outputs = List.of(EmiStack.of(value.result().copyWithCount(12)));
+               List<EmiStack> outputs = List.of(EmiStack.of(value.result().create().copyWithCount(12)));
                registry.addRecipe(new EmiTeapotRecipe(r.id(), inputs, outputs, bucket, value.time()));
             }
          );

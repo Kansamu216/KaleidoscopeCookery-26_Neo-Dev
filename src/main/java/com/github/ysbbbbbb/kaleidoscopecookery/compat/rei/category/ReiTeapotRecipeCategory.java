@@ -104,7 +104,7 @@ public class ReiTeapotRecipeCategory implements DisplayCategory<ReiTeapotRecipeC
                         .toList()
                   )
                );
-               List<EntryIngredient> output = ReiUtil.ofItemStacks(((TeapotRecipe)r.value()).result().copyWithCount(12));
+               List<EntryIngredient> output = ReiUtil.ofItemStacks(((TeapotRecipe)r.value()).result().create().copyWithCount(12));
                registry.add(new ReiTeapotRecipeCategory.TeapotRecipeDisplay(r.id(), fluidInput, inputs, output, ((TeapotRecipe)r.value()).time()));
             }
          );
