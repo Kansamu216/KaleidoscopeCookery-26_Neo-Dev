@@ -37,7 +37,8 @@ public interface TagCommon {
    TagKey<Item> RAW_FISHES_COD = itemTag("foods/raw_cod");
    TagKey<Item> RAW_FISHES_SALMON = itemTag("foods/raw_salmon");
    TagKey<Item> RAW_FISHES_TROPICAL = itemTag("foods/tropical_fish");
-   TagKey<Item> FLOUR = itemTag("flour");
+   // Keep wheat flour separate from other flour variants for cross-mod compatibility.
+   TagKey<Item> FLOUR = itemTag("flour/wheat");
    TagKey<Item> DOUGH = itemTag("dough");
    TagKey<Item> DOUGHS = itemTag("doughs");
    TagKey<Item> FOODS_DOUGH = itemTag("foods/dough");
